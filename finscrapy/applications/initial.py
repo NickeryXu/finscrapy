@@ -14,7 +14,7 @@ def data_ajax():
         status = request.form.get('status_query')
         print(status)
         if status == '1':
-            for data in FR.objects:
+            for data in FR.objects.order_by('-date'):
                 dataObj = {}
                 dataObj['date'] = data.date
                 dataObj['title'] = data.title
@@ -22,7 +22,7 @@ def data_ajax():
                 dataObj['href'] = data.href
                 returnObj.append(dataObj)
         elif status == '2':
-            for data in ECB.objects:
+            for data in ECB.objects.order_by('-date'):
                 dataObj = {}
                 dataObj['date'] = data.date
                 dataObj['title'] = data.title

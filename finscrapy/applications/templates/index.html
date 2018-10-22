@@ -17,13 +17,15 @@
         </select>
         <button id="query">提交</button>
     </div>
-    <table id="example" width="100%">
+    <table id="example" width="90%" style="border: solid 1px">
+        <thead>
         <tr>
             <th>标题</th>
             <th>日期</th>
             <th>链接</th>
             <th>内容</th>
         </tr>
+        </thead>>
     </table>
 </body>
 </html>
@@ -36,10 +38,15 @@
             "ordering": false,
             "info": true,
             "searching": false,
+            "autoWidth": false,
+            "columnDefs": [
+                {width: "20%", targets: 0},
+                {width: "60%", targets: 3},
+            ],
             "language": {
                 "url": "/static/chinese.json"
             },
-            "lengthMenu": [20],
+            dom: "Bfrtip",
             ajax: {
                 "url": "/data",
                 "type": "POST",
@@ -56,7 +63,9 @@
             }, {
                 data: "date"
             }, {
-                data: "href"
+                data: "href",
+                render: function(data, type, full ,meta)
+                    { return '<a target="_blank" href="'+data+'">链接地址</a>'; }
             }, {
                 data: "content"
             }],
